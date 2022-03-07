@@ -4,7 +4,7 @@ from threading import Thread
 from service.face_recognition.face_recognizer import FaceRecognizer
 from service.io.ilistener import IListener
 from util.camera.webcam_util import CameraUtil
-from util.terminal.command_handler import CommandHandler
+from util.terminal.command_executor import CommandExecutor
 
 logger = logging.getLogger(__name__)
 
@@ -29,8 +29,8 @@ class ActivityTracker:
             self.keyboard_listener.is_active()
 
         logger.debug(f"Peripherals Activity Status: {is_peripherals_active}")
-        if not is_peripherals_active and CommandHandler.is_screen_unlocked():
-            logger.debug(f"Screen Unlocked Status: {CommandHandler.is_screen_unlocked()}")
+        if not is_peripherals_active and CommandExecutor.is_screen_unlocked():
+            logger.debug(f"Screen Unlocked Status: {CommandExecutor.is_screen_unlocked()}")
             try:
                 face_match = self.face_recognizer.is_matched(CameraUtil.capture_photo())
                 logger.debug(f"Face Match: {face_match}")
