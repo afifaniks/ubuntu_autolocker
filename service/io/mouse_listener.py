@@ -1,6 +1,6 @@
 from pynput.mouse import Listener
 
-from service.ilistener import IListener
+from service.io.ilistener import IListener
 
 
 class MouseListener(IListener):

@@ -1,6 +1,6 @@
 from pynput.keyboard import Listener
 
-from service.ilistener import IListener
+from service.io.ilistener import IListener
 
 
 class KeyboardListener(IListener):
