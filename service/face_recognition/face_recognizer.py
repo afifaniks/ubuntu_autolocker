@@ -1,6 +1,9 @@
+import logging
+
 import face_recognition
 import numpy as np
-from PIL import Image
+
+logger = logging.getLogger(__name__)
 
 
 class FaceRecognizer:
@@ -8,7 +11,11 @@ class FaceRecognizer:
         self.known_encoding = face_recognition.face_encodings(known_image)[0]
 
     def is_matched(self, unknown_image: np.ndarray) -> bool:
-        unknown_encoding = face_recognition.face_encodings(unknown_image)[0]
-
-        return face_recognition.compare_faces([self.known_encoding], unknown_encoding)
+        try:
+            unknown_encoding = face_recognition.face_encodings(unknown_image)[0]
+            results = face_recognition.compare_faces([self.known_encoding], unknown_encoding)
+            return results[0]
+        except Exception as e:
+            logger.debug(f"Exception occurred while matching face. {e}")
+            return False
 

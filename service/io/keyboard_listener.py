@@ -1,7 +1,10 @@
+import logging
+
 from pynput.keyboard import Listener
 
 from service.io.ilistener import IListener
 
+logger = logging.getLogger(__name__)
 
 class KeyboardListener(IListener):
     def __init__(self, max_inactivity_time: int):
@@ -21,6 +24,7 @@ class KeyboardListener(IListener):
                 on_press=self.on_press,
                 on_release=self.on_release)
         self.listener.start()
+        logger.debug("Keyboard listener started...")
         self.listener.join()
 
     def stop(self):

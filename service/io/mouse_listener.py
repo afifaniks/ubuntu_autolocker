@@ -1,6 +1,10 @@
+import logging
+
 from pynput.mouse import Listener
 
 from service.io.ilistener import IListener
+
+logger = logging.getLogger(__name__)
 
 
 class MouseListener(IListener):
@@ -23,6 +27,7 @@ class MouseListener(IListener):
                 on_scroll=self.on_scroll,
                 on_move=self.on_move)
         self.listener.start()
+        logger.debug("Mouse listener started...")
         self.listener.join()
 
     def stop(self):
