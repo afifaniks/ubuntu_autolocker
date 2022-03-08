@@ -6,6 +6,7 @@ from service.listener.ilistener import IListener
 
 logger = logging.getLogger(__name__)
 
+
 class KeyboardListener(IListener):
     def __init__(self, max_inactivity_time: int):
         super().__init__(max_inactivity_time=max_inactivity_time)
