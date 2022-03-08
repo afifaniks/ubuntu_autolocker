@@ -2,7 +2,7 @@ import logging
 from threading import Thread
 
 from service.face_recognition.face_recognizer import FaceRecognizer
-from service.io.ilistener import IListener
+from service.listener.ilistener import IListener
 from util.camera.webcam_util import CameraUtil
 from util.terminal.command_executor import CommandExecutor
 

@@ -1,30 +1,33 @@
 import logging
 
-from pynput.keyboard import Listener
+from pynput.mouse import Listener
 
-from service.io.ilistener import IListener
+from service.listener.ilistener import IListener
 
 logger = logging.getLogger(__name__)
 
-class KeyboardListener(IListener):
+
+class MouseListener(IListener):
     def __init__(self, max_inactivity_time: int):
         super().__init__(max_inactivity_time=max_inactivity_time)
         self.listener: Listener = None
 
-    def on_press(self, key):
+    def on_move(self, x, y):
         self.update_activity_time()
 
-    def on_release(self, key):
+    def on_click(self, x, y, button, pressed):
         self.update_activity_time()
-        if key == "stop":
-            return False
+
+    def on_scroll(self, x, y, dx, dy):
+        self.update_activity_time()
 
     def start(self):
         self.listener = Listener(
-                on_press=self.on_press,
-                on_release=self.on_release)
+                on_click=self.on_click,
+                on_scroll=self.on_scroll,
+                on_move=self.on_move)
         self.listener.start()
-        logger.debug("Keyboard listener started...")
+        logger.debug("Mouse listener started...")
         self.listener.join()
 
     def stop(self):

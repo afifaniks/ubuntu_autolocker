@@ -1,10 +1,10 @@
 import logging
 import time
 
-from service.activity_tracker import ActivityTracker
+from service.tracker.activity_tracker import ActivityTracker
 from service.face_recognition.face_recognizer import FaceRecognizer
-from service.io.keyboard_listener import KeyboardListener
-from service.io.mouse_listener import MouseListener
+from service.listener.keyboard_listener import KeyboardListener
+from service.listener.mouse_listener import MouseListener
 from util.image.image_util import ImageUtil
 from util.terminal.command_executor import CommandExecutor
 
